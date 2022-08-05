@@ -16,16 +16,7 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
 
-def serialize_cupcake(cupcake):
-    """Serialize a cupcake SQLAlchemy obj to dictionary."""
 
-    return{
-        "id": cupcake.id,
-        "flavor": cupcake.flavor,
-        "size": cupcake.size,
-        "rating": cupcake.rating,
-        "image": cupcake.image
-    }
 
 # @app.route('/')
 # def home_page():
@@ -53,10 +44,19 @@ def single_cupcake(cup_id):
     
     return jsonify(cupcake=serialized)
     
-# @app.route('/api/cupcakes', methods=["POST"])
-# def add_cupcake():
-#     """Shows home page"""
+@app.route('/api/cupcakes', methods=["POST"])
+def add_cupcake():
+    """Add new cupcake"""
 
-#     cupcake = Cupcake.query.all()
+    data = request.json
+
+    cupcake = Cupcake(
+        flavor=data['flavor'],
+        rating=data['rating'],
+        size=data['size'],
+        image=data['image'] or None)
+
+    db.session.add(cupcake)
+    db.session.commit()
     
-#     return render_template('home.html')
+    return (jsonify(cupcake=cupcake.serialize_cupcake()), 201)
