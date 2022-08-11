@@ -15,6 +15,16 @@ class Cupcake(db.Model):
 
     # def __repr__(self):
     #     return f"<User id={self.id}, first name={self.first_name}, last name={self.last_name}, image={self.image}>"
+    def serialize_cupcake(cupcake):
+        """Serialize a cupcake SQLAlchemy obj to dictionary."""
+
+        return{
+            "id": cupcake.id,
+            "flavor": cupcake.flavor,
+            "size": cupcake.size,
+            "rating": cupcake.rating,
+            "image": cupcake.image
+        }
 
     id = db.Column(db.Integer,
                     primary_key=True,
@@ -27,3 +37,4 @@ class Cupcake(db.Model):
                     nullable=False)
     image = db.Column(db.String(),
                     default="https://tinyurl.com/demo-cupcake")
+
