@@ -24,7 +24,7 @@ def home_page():
 
     cupcakes = Cupcake.query.all()
     
-    return render_template('home.html')
+    return render_template('home.html', cupcakes=cupcakes)
 
 @app.route('/api/cupcakes')
 def all_cupcakes():
