@@ -11,11 +11,16 @@
     <h1>Cupcakes</h1>
     <ul>
         {% for cupcake in cupcakes %}
-        <li>{{ cupcake.flavor }} <img src="{{ cupcake.image }}" alt="https://images.unsplash.com/photo-1598620617377-3bfb505b4384?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZW1wdHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></li>
+        <li> 
+            <div>{{ cupcake.flavor }}</div>
+            <img src="{{ cupcake.image }}" alt="https://images.unsplash.com/photo-1598620617377-3bfb505b4384?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZW1wdHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+            <button class="delete-btn" data-id="{{ cupcake.id }}">X</button>
+        </li>
         {% endfor %}
     </ul>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="static/cupcake.js"></script>
 </body>
 </html>
